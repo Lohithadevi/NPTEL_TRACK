@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  withCredentials: true  // sends session cookie with every request
+  baseURL: `${BASE_URL}/api`,
+  withCredentials: true
 });
 
 api.interceptors.request.use((config) => {

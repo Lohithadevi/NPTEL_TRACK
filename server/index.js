@@ -7,11 +7,13 @@ const { Server } = require('socket.io');
 const session = require('express-session');
 const { MongoStore } = require('connect-mongo');
 
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: 'http://localhost:3000', credentials: true } });
+const io = new Server(server, { cors: { origin: FRONTEND_URL, credentials: true } });
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: FRONTEND_URL, credentials: true }));
 app.use(express.json());
 
 // Session middleware — stored in MongoDB so it survives server restarts
